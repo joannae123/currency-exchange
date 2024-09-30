@@ -1,0 +1,33 @@
+<div class="card p-3">
+    <h4 class="card-title">Przelicznik Walut</h4>
+    <div class="mb-3">
+      <label for="amount" class="form-label">Ilość:</label>
+      <input type="number" id="amount" class="form-control" [(ngModel)]="amount">
+    </div>
+
+    <div class="mb-3">
+      <label for="fromCurrency" class="form-label">Z:</label>
+      <select id="fromCurrency" class="form-control" [(ngModel)]="fromCurrency">
+    @for(rate of rates; track rate.code){
+        <option [value]="rate.code">{{ rate.currency }} ({{ rate.code }})</option>
+    }     
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="toCurrency" class="form-label">Na:</label>
+      <select id="toCurrency" class="form-control" [(ngModel)]="toCurrency">
+        @for(rate of rates; track rate.code){
+            <option [value]="rate.code">{{ rate.currency }} ({{ rate.code }})</option>
+        }
+      </select>
+    </div>
+
+    <button class="btn btn-primary" (click)="convert()">Przelicz</button>
+
+    @if(result !== null){
+        <div class="mt-3">
+            <h5>Wynik: {{ amount }} {{ fromCurrency }} = {{ result}} {{ toCurrency }}</h5>
+          </div>
+    }
+  </div>

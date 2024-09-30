@@ -1,0 +1,26 @@
+<div class="mb-3">
+    <label for="date" class="form-label">Proszę wybrać datę:</label>
+    <input type="date" id="date" class="form-control" [(ngModel)]="selectedDate" (change)="onDateChange()">
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        @if(selectedDate){
+            <th scope="col">Waluta</th>
+            <th scope="col">Kod</th>
+            <th scope="col">Kurs</th>
+        }
+
+      </tr>
+    </thead>
+    <tbody>
+        @for(rate of rates; track rate.code){
+            <tr>
+                <td>{{ rate.currency }}</td>
+                <td>{{ rate.code }}</td>
+                <td>{{ rate.mid }}</td>
+              </tr>
+        }
+    </tbody>
+  </table>
